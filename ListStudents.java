@@ -11,18 +11,20 @@ public class ListStudents {
         int studentCount = 0;
 
         do {
-            System.out.println("\nStudent Management System");
+            System.out.println("-------------------------------");
+            System.out.println("\tStudent System");
+            System.out.println("-------------------------------");
             System.out.println("1. Add a student");
             System.out.println("2. Edit a student");
             System.out.println("3. View the list of students");
             System.out.println("4. Delete a student");
             System.out.println("5. Exit");
+            System.out.println("-------------------------------");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+            scanner.nextLine(); 
 
-            switch (choice) {
-                case 1:
+            if (choice == 1) {
                     if (studentCount < 10) {
                         Student newStudent = addStudent(scanner);
                         if (newStudent != null) {
@@ -32,35 +34,30 @@ public class ListStudents {
                     } else {
                         System.out.println("You have already exceeded the limit of 10 students.");
                     }
-                    break;
-                case 2:
-                    editStudent(students, scanner);
-                    break;
-                case 3:
-                    viewStudents(students);
-                    break;
-                case 4:
-                    deleteStudent(students, scanner);
-                    break;
-                case 5:
-                    System.out.println("Exiting the program.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        } while (choice != 5);
-
-        scanner.close();
-    }
-
+                   
+            }else if (choice == 2){
+                editStudents(students, scanner);
+            }else if (choice == 3){
+                viewStudents(students);
+            }else if (choice == 4){
+                deleteStudents(students, scanner);
+            }else if (choice == 5){
+                System.out.println("Exiting the program");
+            }else {
+                System.out.println("Invalid choice. Please try again.");
+            }   
+    } while (choice != 5);
+    
+}
+    
     public static Student addStudent(Scanner scanner) {
-        System.out.print("Enter the student's name or press Enter to skip: ");
+        System.out.print("Enter the student's name: ");
         String name = scanner.nextLine();
 
-        System.out.print("Enter the student's course or press Enter to skip: ");
+        System.out.print("Enter the student's course: ");
         String course = scanner.nextLine();
 
-        System.out.print("Enter the student's GWA or press Enter to skip: ");
+        System.out.print("Enter the student's GWA: ");
         String gwaInput = scanner.nextLine();
 
         String defaultName = "N/A";
@@ -87,8 +84,8 @@ public class ListStudents {
             }
         }
     }
-
-    public static void editStudent(Student[] students, Scanner scanner) {
+  
+    public static void editStudents(Student[] students, Scanner scanner) {
         System.out.print("Enter the index of the student you want to edit (1-" + students.length + "): ");
         int index = scanner.nextInt();
         scanner.nextLine();
@@ -107,6 +104,7 @@ public class ListStudents {
     }
 
     public static void viewStudents(Student[] students) {
+        System.out.println("-------------------------------");
         System.out.println("List of Students:");
         for (int i = 0; i < students.length; i++) {
             if (students[i] != null) {
@@ -115,7 +113,8 @@ public class ListStudents {
         }
     }
 
-    public static void deleteStudent(Student[] students, Scanner scanner) {
+    public static void deleteStudents(Student[] students, Scanner scanner) {
+        System.out.println("-------------------------------");
         System.out.print("Enter the index of the student you want to delete (1-" + students.length + "): ");
         int index = scanner.nextInt();
         scanner.nextLine();
@@ -145,6 +144,6 @@ class Student {
     }
 
     public String toString() {
-        return "Name: " + name + ", Course: " + course + ", GWA: " + (gwa < 0 ? "N/A" : gwa);
+        return "Name: " + name + " Course: " + course + " GWA: " + (gwa < 0 ? "N/A" : gwa);
     }
 }
