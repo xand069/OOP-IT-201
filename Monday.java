@@ -26,12 +26,13 @@ public class Monday extends Weekday {
     }
 
     public void showAlarm() {
-        LocalTime alarm = LocalTime.parse(this.time);
-        LocalTime now = LocalTime.now();
-        if (alarm.isAfter(now)) {
-            System.out.println("Alarm is set for tomorrow!");
-        } else {
-            System.out.println("I'll wake you up later!");
-        }
-    }
+    LocalTime alarm = LocalTime.parse(this.time);
+    LocalTime now = LocalTime.now();
+    
+    if (alarm.isAfter(now)) {
+        System.out.println("Alarm is set for tomorrow!");
+    } else {
+        System.out.println("I'll wake you up later!");
+    } 
+}
 }
